@@ -13,6 +13,8 @@ const forecast = require('./utils/forecast')
 
 // * Tạo ra obj cho ứng dụng của mình, obj này chứa rất nhiều method để mình sử dụng cho việc xây dựng ứng dụng
 const app = express() // Chỉ cần chạy express() 1 lần trong toàn ứng dụng thôi
+// * process.env là 1 obj, nơi mình access environment variable
+const port = process.env.PORT || 3000 // Để deploy lên Heroku, đồng thời chạy tốt ở local (dùng or operator)
 
 // * Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public')
@@ -105,8 +107,8 @@ app.get('*', (req, res) => {
 })
 
 // Start the server up (Chỉ cần chạy 1 lần cho toàn ứng dụng)
-app.listen(3000, () => {
-    console.log('Server is up on port 3000.')
+app.listen(port, () => {
+    console.log(`Server is up on port ${port}.`)
 })
 
 // * Quy định khi ngta: request tới root domain (hoặc access qua browser) thì serve cái gì
